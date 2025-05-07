@@ -60,7 +60,7 @@ namespace Backend.Controller
         [HttpDelete("{id}")]
         public ActionResult<string> DeleteShift (int id)
         {
-            var result = _shiftService.GetShiftById(id);
+            var result = _shiftService.DeleteShfit(id);
 
             if (result == null)
             {

@@ -43,12 +43,13 @@ namespace Backend.Services
         public Shift? GetShiftById(int id)
         {
             Shift savedShift = _dbContext.Shifts.Find(id);
+            Console.WriteLine(savedShift);
             return savedShift == null ? null : savedShift;
         }
 
-        public Shift UpdateShift(Shift updatedShift)
+        public Shift UpdateShift(int id, Shift updatedShift)
         {
-            Shift savedShift = _dbContext.Shifts.Find(updatedShift.Id);
+            Shift savedShift = _dbContext.Shifts.Find(id);
 
             if (savedShift == null)
             {

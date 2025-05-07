@@ -11,7 +11,7 @@ namespace Backend.Services
         public List<Shift> GetAllShifts();
         public Shift? GetShiftById(int id);
         public Shift CreateShift(Shift shift);
-        public Shift UpdateShift(Shift updatedShift);
+        public Shift UpdateShift(int id, Shift shift);
         public string? DeleteShfit(int id);
     }
 }

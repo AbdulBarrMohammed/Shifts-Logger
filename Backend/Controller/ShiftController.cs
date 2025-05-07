@@ -45,9 +45,9 @@ namespace Backend.Controller
         }
 
         [HttpPut("{id}")]
-        public ActionResult<Shift> UpdateShift(Shift updatedShift)
+        public ActionResult<Shift> UpdateShift(int id, [FromBody] Shift updatedShift)
         {
-            var result = _shiftService.GetShiftById(updatedShift.Id);
+            var result = _shiftService.UpdateShift(id, updatedShift);
 
             if (result == null)
             {

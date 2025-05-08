@@ -1,0 +1,15 @@
+/Users/barrmohammed/Desktop/ShiftsLogger/Frontend/bin/Debug/net9.0/Frontend
+/Users/barrmohammed/Desktop/ShiftsLogger/Frontend/bin/Debug/net9.0/Frontend.deps.json
+/Users/barrmohammed/Desktop/ShiftsLogger/Frontend/bin/Debug/net9.0/Frontend.runtimeconfig.json
+/Users/barrmohammed/Desktop/ShiftsLogger/Frontend/bin/Debug/net9.0/Frontend.dll
+/Users/barrmohammed/Desktop/ShiftsLogger/Frontend/bin/Debug/net9.0/Frontend.pdb
+/Users/barrmohammed/Desktop/ShiftsLogger/Frontend/obj/Debug/net9.0/Frontend.GeneratedMSBuildEditorConfig.editorconfig
+/Users/barrmohammed/Desktop/ShiftsLogger/Frontend/obj/Debug/net9.0/Frontend.AssemblyInfoInputs.cache
+/Users/barrmohammed/Desktop/ShiftsLogger/Frontend/obj/Debug/net9.0/Frontend.AssemblyInfo.cs
+/Users/barrmohammed/Desktop/ShiftsLogger/Frontend/obj/Debug/net9.0/Frontend.csproj.CoreCompileInputs.cache
+/Users/barrmohammed/Desktop/ShiftsLogger/Frontend/obj/Debug/net9.0/Frontend.sourcelink.json
+/Users/barrmohammed/Desktop/ShiftsLogger/Frontend/obj/Debug/net9.0/Frontend.dll
+/Users/barrmohammed/Desktop/ShiftsLogger/Frontend/obj/Debug/net9.0/refint/Frontend.dll
+/Users/barrmohammed/Desktop/ShiftsLogger/Frontend/obj/Debug/net9.0/Frontend.pdb
+/Users/barrmohammed/Desktop/ShiftsLogger/Frontend/obj/Debug/net9.0/Frontend.genruntimeconfig.cache
+/Users/barrmohammed/Desktop/ShiftsLogger/Frontend/obj/Debug/net9.0/ref/Frontend.dll

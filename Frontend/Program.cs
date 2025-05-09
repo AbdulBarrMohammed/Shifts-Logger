@@ -16,7 +16,8 @@ class Program
 {
     static async Task Main(string[] args)
     {
-        await UpdateShift(2);
+        //await DeleteShift(4);
+        //await UpdateShift(2);
 
         //var add = await AddUser();
 
@@ -102,6 +103,24 @@ class Program
             if (newPostJson.IsSuccessStatusCode)
             {
                 Console.WriteLine("You successfully updated to shift");
+            }
+            else {
+                Console.WriteLine(newPostJson.StatusCode);
+            }
+        }
+    }
+
+    static async Task DeleteShift(int id)
+    {
+        using (var client = new HttpClient())
+        {
+            var endpoint = new Uri($"http://localhost:5247/api/Shift/{id}");
+
+
+            var newPostJson = await client.DeleteAsync(endpoint);
+            if (newPostJson.IsSuccessStatusCode)
+            {
+                Console.WriteLine("You successfully deleted shift");
             }
             else {
                 Console.WriteLine(newPostJson.StatusCode);

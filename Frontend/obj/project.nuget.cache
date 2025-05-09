@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Fm3hugUc59c=",
+  "dgSpecHash": "IKWNDLpN2Cc=",
   "success": true,
   "projectFilePath": "/Users/barrmohammed/Desktop/ShiftsLogger/Frontend/Frontend.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/barrmohammed/.nuget/packages/spectre.console/0.50.0/spectre.console.0.50.0.nupkg.sha512",
+    "/Users/barrmohammed/.nuget/packages/system.memory/4.6.3/system.memory.4.6.3.nupkg.sha512"
+  ],
   "logs": []
 }

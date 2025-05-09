@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 using System.Reflection.Metadata.Ecma335;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
+using Spectre.Console;
+using Frontend;
+
+
 
 
 
@@ -16,6 +20,20 @@ class Program
 {
     static async Task Main(string[] args)
     {
+        bool isOn = true;
+        while (isOn)
+        {
+            Console.Clear();
+            var actionChoice = AnsiConsole.Prompt(
+            new SelectionPrompt<MenuAction>().Title("Select an action:")
+            .PageSize(10)
+            .UseConverter(action =>
+                System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(
+                    action.ToString().Replace("_", " ").ToLower()))
+            .AddChoices(Enum.GetValues<MenuAction>()));
+        }
+
+        /*
         //await DeleteShift(4);
         //await UpdateShift(2);
 
@@ -43,9 +61,10 @@ class Program
         catch (Exception ex)
         {
             Console.WriteLine($"Error: {ex.Message}");
-        }
+        } */
     }
 
+/*
     static async Task<Shift> GetUser()
     {
         HttpClient client = new HttpClient();
@@ -55,7 +74,7 @@ class Program
         return new Shift(10, DateTime.Now, DateTime.Now, shift.Name);
     }
 
-    static async Task<Shift?> AddUser()
+    static async Task AddUser()
     {
 
 
@@ -79,8 +98,6 @@ class Program
                 Console.WriteLine("error");
             }
         }
-
-        return new Shift();
 
 
     }
@@ -127,6 +144,6 @@ class Program
             }
         }
     }
-
+ */
 
 }

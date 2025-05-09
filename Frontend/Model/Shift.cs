@@ -16,9 +16,8 @@ namespace Frontend.obj.Model
         public DateTime EndTime { get; set; }
         public string Name { get; set; }
 
-         public Shift(int id, int duration, DateTime startTime, DateTime endTime, string name)
+         public Shift(int duration, DateTime startTime, DateTime endTime, string name)
         {
-            Id = id;
             Duration = duration;
             StartTime = startTime;
             EndTime = endTime;

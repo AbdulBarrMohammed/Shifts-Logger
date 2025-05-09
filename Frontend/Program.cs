@@ -31,6 +31,25 @@ class Program
                 System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(
                     action.ToString().Replace("_", " ").ToLower()))
             .AddChoices(Enum.GetValues<MenuAction>()));
+
+            switch(actionChoice)
+            {
+                case MenuAction.View_All_Shifts:
+                    await GetAllShifts();
+                    break;
+                case MenuAction.Add_Shift:
+                    await AddShift();
+                    break;
+            }
+
+            if (isOn)
+            {
+                Console.WriteLine("\nPress any key to return to the menu...");
+                Console.ReadKey();
+            }
+            else {
+                break;
+            }
         }
 
         /*
@@ -38,7 +57,21 @@ class Program
         //await UpdateShift(2);
 
         //var add = await AddUser();
+        */
+    }
 
+
+    static async Task<Shift> GetUser()
+    {
+        HttpClient client = new HttpClient();
+        client.BaseAddress = new Uri("http://localhost:5247/api/");
+        var shift = await client.GetFromJsonAsync<Shift>("Shift/1");
+        Console.WriteLine(shift.Name);
+        return new Shift(10, DateTime.Now, DateTime.Now, shift.Name);
+    }
+
+    static async Task GetAllShifts()
+    {
         HttpClient client = new HttpClient();
         client.BaseAddress = new Uri("http://localhost:5247/api/");
 
@@ -61,21 +94,12 @@ class Program
         catch (Exception ex)
         {
             Console.WriteLine($"Error: {ex.Message}");
-        } */
+        }
     }
 
-/*
-    static async Task<Shift> GetUser()
+    static async Task AddShift()
     {
-        HttpClient client = new HttpClient();
-        client.BaseAddress = new Uri("http://localhost:5247/api/");
-        var shift = await client.GetFromJsonAsync<Shift>("Shift/1");
-        Console.WriteLine(shift.Name);
-        return new Shift(10, DateTime.Now, DateTime.Now, shift.Name);
-    }
-
-    static async Task AddUser()
-    {
+        
 
 
         using (var client = new HttpClient())
@@ -144,6 +168,6 @@ class Program
             }
         }
     }
- */
+
 
 }

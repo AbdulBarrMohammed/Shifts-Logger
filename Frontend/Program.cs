@@ -16,11 +16,9 @@ class Program
 {
     static async Task Main(string[] args)
     {
+        await UpdateShift(2);
 
-        var currShift = await GetUser();
-        Console.WriteLine(currShift.Name);
-
-        var add = await AddUser();
+        //var add = await AddUser();
 
         HttpClient client = new HttpClient();
         client.BaseAddress = new Uri("http://localhost:5247/api/");
@@ -84,6 +82,31 @@ class Program
         return new Shift();
 
 
+    }
+
+    static async Task UpdateShift(int id)
+    {
+        using (var client = new HttpClient())
+        {
+            var endpoint = new Uri($"http://localhost:5247/api/Shift/{id}");
+            var newShift = new Shift()
+            {
+                Id = id,
+                Duration = 400,
+                StartTime = DateTime.Now,
+                EndTime = DateTime.Now,
+                Name = "Snoop Dog is Doggg"
+            };
+
+            var newPostJson = await client.PutAsJsonAsync(endpoint, newShift);
+            if (newPostJson.IsSuccessStatusCode)
+            {
+                Console.WriteLine("You successfully updated to shift");
+            }
+            else {
+                Console.WriteLine(newPostJson.StatusCode);
+            }
+        }
     }
 
 

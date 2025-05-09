@@ -32,7 +32,7 @@ namespace Backend.Services
 
             _dbContext.Shifts.Remove(savedShift);
             _dbContext.SaveChanges();
-            
+
             return $"Successfully deleted Shift with id: {id}";
         }
 
@@ -56,6 +56,7 @@ namespace Backend.Services
             {
                 return null;
             }
+            updatedShift.Id = id;
 
             _dbContext.Entry(savedShift).CurrentValues.SetValues(updatedShift);
             _dbContext.SaveChanges();

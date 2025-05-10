@@ -8,20 +8,47 @@ namespace Frontend
 {
     public class UserInteface
     {
-        internal void MainMenu()
+        public void GetStartTime()
         {
-            bool isOn = true;
-            while (isOn)
+
+        }
+
+        public void GetEndTime()
+        {
+
+            Console.WriteLine("Enter the year: ");
+            string year = Console.ReadKey().ToString();
+            while (!Validation.CheckYear(year))
             {
-                 Console.Clear();
-                var actionChoice = AnsiConsole.Prompt(
-                new SelectionPrompt<MenuAction>().Title("Select an action:")
-                .PageSize(10)
-                .UseConverter(action =>
-                    System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(
-                        action.ToString().Replace("_", " ").ToLower()))
-                .AddChoices(Enum.GetValues<MenuAction>()));
+                Console.WriteLine("Year is not in correct format");
+                Console.WriteLine("Enter the year: ");
+                year = Console.ReadKey().ToString();
             }
+
+            Console.WriteLine("Enter the month: ");
+            string month = Console.ReadKey().ToString();
+            while (!Validation.CheckMonth(month))
+            {
+                Console.WriteLine("Month is not in correct format");
+                Console.WriteLine("Enter the month: ");
+                month = Console.ReadKey().ToString();
+            }
+
+            Console.WriteLine("Enter the day : ");
+            var day = Console.ReadKey();
+
+            Console.WriteLine("Enter the hour: ");
+            var hour = Console.ReadKey();
+
+            Console.WriteLine("Enter the minutes: ");
+            var minutes = Console.ReadKey();
+
+
+        }
+        public int calculateDuration(DateTime start, DateTime end)
+        {
+            TimeSpan span = end.Subtract ( start );
+            return (int)span.TotalHours;
         }
     }
 }

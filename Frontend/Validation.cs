@@ -8,32 +8,47 @@ namespace Frontend
 {
     static class Validation
     {
-        static bool checkYear(int year)
+        static public bool CheckYear(string year)
         {
-            if (Math.Floor(Math.Log10(year) + 1) != 4) return false;
+            // Check if year is a number
+            int number;
+            if(!Int32.TryParse(year, out number))
+            {
+                return false;
+            }
+
+            // Check if length of number is 4
+            if (Math.Floor(Math.Log10(number) + 1) != 4) return false;
+
             return true;
         }
 
-        static bool checkHour(int hour)
+        static bool CheckHour(int hour)
         {
             if (hour > 23 || hour < 1) return false;
             return true;
         }
 
-        static bool checkMin(int min)
+        static bool CheckMin(int min)
         {
             if (min > 59 || min < 0) return false;
             return true;
         }
 
-        static bool checkDay(int day)
+        static bool CheckDay(int day)
         {
             if (day > 31 || day <= 0) return false;
             return true;
         }
-        static bool checkMonth(int mouth)
+        static public bool CheckMonth(string month)
         {
-            if (mouth > 12 || mouth < 0) return false;
+            int number;
+            if(!Int32.TryParse(month, out number))
+            {
+                return false;
+            }
+
+            if (number > 12 || number < 0) return false;
             return true;
         }
     }

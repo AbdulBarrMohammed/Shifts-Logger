@@ -11,6 +11,7 @@ using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Spectre.Console;
 using Frontend;
+using Newtonsoft.Json;
 
 
 
@@ -37,8 +38,8 @@ class Program
                 case MenuAction.View_All_Shifts:
                     await GetAllShifts();
                     break;
-                case MenuAction.Add_Shift:
-                    await AddShift();
+                case MenuAction.Get_Shift:
+                    await GetUser(4);
                     break;
             }
 
@@ -61,13 +62,38 @@ class Program
     }
 
 
-    static async Task<Shift> GetUser()
+    static async Task GetUser(int id)
     {
+
+        /*
         HttpClient client = new HttpClient();
         client.BaseAddress = new Uri("http://localhost:5247/api/");
-        var shift = await client.GetFromJsonAsync<Shift>("Shift/1");
-        Console.WriteLine(shift.Name);
-        return new Shift(10, DateTime.Now, DateTime.Now, shift.Name);
+        var shift = await client.GetFromJsonAsync<Shift>($"Shift/{id}");
+        return new Shift(shift.Duration, shift.StartTime, shift.EndTime, shift.Name); */
+
+        using (var client = new HttpClient())
+        {
+            var endpoint = new Uri($"http://localhost:5247/api/Shift/{id}");
+
+            var response = await client.GetAsync(endpoint);
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("You successfully added to shift");
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"{jsonResponse}\n");
+                Shift shift = JsonConvert.DeserializeObject<Shift>(jsonResponse);
+                Console.WriteLine(shift.Duration);
+
+            }
+            else {
+                Console.WriteLine($"No user with id: {id}");
+            }
+        }
+
+
+
+
+
     }
 
     static async Task GetAllShifts()
@@ -99,7 +125,7 @@ class Program
 
     static async Task AddShift()
     {
-        
+
 
 
         using (var client = new HttpClient())

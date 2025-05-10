@@ -16,3 +16,4 @@
 /Users/barrmohammed/Desktop/ShiftsLogger/Frontend/bin/Debug/net9.0/Spectre.Console.dll
 /Users/barrmohammed/Desktop/ShiftsLogger/Frontend/obj/Debug/net9.0/Frontend.csproj.AssemblyReference.cache
 /Users/barrmohammed/Desktop/ShiftsLogger/Frontend/obj/Debug/net9.0/Frontend.csproj.Up2Date
+/Users/barrmohammed/Desktop/ShiftsLogger/Frontend/bin/Debug/net9.0/Newtonsoft.Json.dll

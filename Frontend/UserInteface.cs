@@ -35,13 +35,32 @@ namespace Frontend
             }
 
             Console.WriteLine("Enter the day : ");
-            var day = Console.ReadKey();
+            var day = Console.ReadKey().ToString();
+            while (!Validation.CheckDay(day))
+            {
+                Console.WriteLine("Day is not in correct format");
+                Console.WriteLine("Enter the month: ");
+                day = Console.ReadKey().ToString();
+            }
 
             Console.WriteLine("Enter the hour: ");
-            var hour = Console.ReadKey();
+            var hour = Console.ReadKey().ToString();
+            while (!Validation.CheckHour(hour))
+            {
+                Console.WriteLine("Day is not in correct format");
+                Console.WriteLine("Enter the month: ");
+                hour = Console.ReadKey().ToString();
+            }
+
 
             Console.WriteLine("Enter the minutes: ");
-            var minutes = Console.ReadKey();
+            var minutes = Console.ReadKey().ToString();
+            while (!Validation.CheckMin(minutes))
+            {
+                Console.WriteLine("Day is not in correct format");
+                Console.WriteLine("Enter the month: ");
+                minutes = Console.ReadKey().ToString();
+            }
 
 
         }

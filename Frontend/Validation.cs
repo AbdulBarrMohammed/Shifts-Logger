@@ -23,21 +23,36 @@ namespace Frontend
             return true;
         }
 
-        static bool CheckHour(int hour)
+        static public bool CheckHour(string hour)
         {
-            if (hour > 23 || hour < 1) return false;
+            int number;
+            if(!Int32.TryParse(hour, out number))
+            {
+                return false;
+            }
+            if (number > 23 || number < 1) return false;
             return true;
         }
 
-        static bool CheckMin(int min)
+        static public bool CheckMin(string min)
         {
-            if (min > 59 || min < 0) return false;
+            int number;
+            if(!Int32.TryParse(min, out number))
+            {
+                return false;
+            }
+            if (number > 59 || number < 0) return false;
             return true;
         }
 
-        static bool CheckDay(int day)
+        static public bool CheckDay(string day)
         {
-            if (day > 31 || day <= 0) return false;
+            int number;
+            if(!Int32.TryParse(day, out number))
+            {
+                return false;
+            }
+            if (number > 31 || number <= 0) return false;
             return true;
         }
         static public bool CheckMonth(string month)

@@ -65,12 +65,6 @@ class Program
     static async Task GetUser(int id)
     {
 
-        /*
-        HttpClient client = new HttpClient();
-        client.BaseAddress = new Uri("http://localhost:5247/api/");
-        var shift = await client.GetFromJsonAsync<Shift>($"Shift/{id}");
-        return new Shift(shift.Duration, shift.StartTime, shift.EndTime, shift.Name); */
-
         using (var client = new HttpClient())
         {
             var endpoint = new Uri($"http://localhost:5247/api/Shift/{id}");

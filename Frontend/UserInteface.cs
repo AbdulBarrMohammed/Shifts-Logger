@@ -99,7 +99,7 @@ namespace Frontend
         {
             Console.WriteLine("Enter Shift id: ");
 
-            var id = Console.ReadLine();
+            string id = Console.ReadLine();
             while (!Validation.CheckId(id))
             {
                 Console.WriteLine("Id is not a number\n");
@@ -107,6 +107,7 @@ namespace Frontend
                 id = Console.ReadLine();
             }
             return Int32.Parse(id);
+        }
 
         public Shift CreateNewShift()
         {

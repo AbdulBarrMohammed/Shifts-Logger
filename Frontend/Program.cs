@@ -13,6 +13,7 @@ using Spectre.Console;
 using Frontend;
 using Newtonsoft.Json;
 using System.Diagnostics.CodeAnalysis;
+using System.ComponentModel.Design.Serialization;
 
 
 
@@ -22,7 +23,7 @@ class Program
 {
     static async Task Main(string[] args)
     {
-        UserInteface inteface = new UserInteface();
+        UserInteface userInteface = new UserInteface();
         bool isOn = true;
         while (isOn)
         {
@@ -41,11 +42,16 @@ class Program
                     await GetAllShifts();
                     break;
                 case MenuAction.Get_Shift:
-                    await GetUser(4);
+                    int id = userInteface.GetId();
+                    await GetUser(id);
                     break;
                 case MenuAction.Add_Shift:
-                    Shift newShift = inteface.CreateNewShift();
+                    Shift newShift = userInteface.CreateNewShift();
                     await AddShift(newShift);
+                    break;
+                case MenuAction.Delete_Shift:
+                    int deleteId = userInteface.GetId();
+                    await DeleteShift(deleteId);
                     break;
             }
 
@@ -78,11 +84,10 @@ class Program
             var response = await client.GetAsync(endpoint);
             if (response.IsSuccessStatusCode)
             {
-                Console.WriteLine("You successfully added to shift");
                 var jsonResponse = await response.Content.ReadAsStringAsync();
-                Console.WriteLine($"{jsonResponse}\n");
                 Shift shift = JsonConvert.DeserializeObject<Shift>(jsonResponse);
-                Console.WriteLine(shift.Duration);
+                Console.WriteLine(
+                    $"\nName: {shift.Name} \n Shift Start Time: {shift.StartTime} \n Shift End Time: {shift.EndTime} \n Duration: {shift.Duration}");
 
             }
             else {
@@ -109,7 +114,7 @@ class Program
             {
                 foreach (var shift in shifts)
                 {
-                    Console.WriteLine($"{shift.Id}: {shift.Name} ({shift.Duration} mins)");
+                    Console.WriteLine($"Name: {shift.Name} \n Shift Start Time: {shift.StartTime} \n Shift End Time: {shift.EndTime} \n Duration: {shift.Duration}");
                 }
             }
             else
@@ -129,14 +134,6 @@ class Program
         using (var client = new HttpClient())
         {
             var endpoint = new Uri("http://localhost:5247/api/Shift");
-            /*var newShift = new Shift()
-            {
-                Duration = 20,
-                StartTime = DateTime.Now,
-                EndTime = DateTime.Now,
-                Name = "Snoop"
-            }; */
-
             var newPostJson = await client.PostAsJsonAsync(endpoint, newShift);
             if (newPostJson.IsSuccessStatusCode)
             {
@@ -150,19 +147,19 @@ class Program
 
     }
 
-    static async Task UpdateShift(int id)
+    static async Task UpdateShift(int id, Shift newShift)
     {
         using (var client = new HttpClient())
         {
             var endpoint = new Uri($"http://localhost:5247/api/Shift/{id}");
-            var newShift = new Shift()
+            /*var newShift = new Shift()
             {
                 Id = id,
                 Duration = 400,
                 StartTime = DateTime.Now,
                 EndTime = DateTime.Now,
                 Name = "Snoop Dog is Doggg"
-            };
+            }; */
 
             var newPostJson = await client.PutAsJsonAsync(endpoint, newShift);
             if (newPostJson.IsSuccessStatusCode)
@@ -185,7 +182,7 @@ class Program
             var newPostJson = await client.DeleteAsync(endpoint);
             if (newPostJson.IsSuccessStatusCode)
             {
-                Console.WriteLine("You successfully deleted shift");
+                Console.WriteLine($"You successfully deleted shift with id: {id}");
             }
             else {
                 Console.WriteLine(newPostJson.StatusCode);

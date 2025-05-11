@@ -12,6 +12,7 @@ using System.ComponentModel.DataAnnotations;
 using Spectre.Console;
 using Frontend;
 using Newtonsoft.Json;
+using System.Diagnostics.CodeAnalysis;
 
 
 
@@ -21,6 +22,7 @@ class Program
 {
     static async Task Main(string[] args)
     {
+        UserInteface inteface = new UserInteface();
         bool isOn = true;
         while (isOn)
         {
@@ -40,6 +42,10 @@ class Program
                     break;
                 case MenuAction.Get_Shift:
                     await GetUser(4);
+                    break;
+                case MenuAction.Add_Shift:
+                    Shift newShift = inteface.CreateNewShift();
+                    await AddShift(newShift);
                     break;
             }
 
@@ -117,19 +123,19 @@ class Program
         }
     }
 
-    static async Task AddShift()
+    static async Task AddShift(Shift newShift)
     {
 
         using (var client = new HttpClient())
         {
             var endpoint = new Uri("http://localhost:5247/api/Shift");
-            var newShift = new Shift()
+            /*var newShift = new Shift()
             {
                 Duration = 20,
                 StartTime = DateTime.Now,
                 EndTime = DateTime.Now,
                 Name = "Snoop"
-            };
+            }; */
 
             var newPostJson = await client.PostAsJsonAsync(endpoint, newShift);
             if (newPostJson.IsSuccessStatusCode)

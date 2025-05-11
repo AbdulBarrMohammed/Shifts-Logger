@@ -15,19 +15,19 @@ namespace Frontend
         public string GetName()
         {
             Console.WriteLine("Enter your name: \n");
-            var name = Console.ReadKey().ToString();
+            string name = Console.ReadLine();
             return name;
         }
 
         public int GetMin()
         {
             Console.WriteLine("Enter the minutes: \n");
-            var minutes = Console.ReadKey().ToString();
+            string minutes = Console.ReadLine();
             while (!Validation.CheckMin(minutes))
             {
-                Console.WriteLine("Day is not in correct format");
-                Console.WriteLine("Enter the month: ");
-                minutes = Console.ReadKey().ToString();
+                Console.WriteLine("Day is not in correct format\n");
+                Console.WriteLine("Enter the min: ");
+                minutes = Console.ReadLine();
             }
 
             return Int32.Parse(minutes);
@@ -37,12 +37,12 @@ namespace Frontend
         public int GetHour()
         {
             Console.WriteLine("Enter the hour: ");
-            var hour = Console.ReadKey().ToString();
+            string hour = Console.ReadLine();
             while (!Validation.CheckHour(hour))
             {
                 Console.WriteLine("Day is not in correct format");
                 Console.WriteLine("Enter the month: ");
-                hour = Console.ReadKey().ToString();
+                hour = Console.ReadLine();
             }
 
             return Int32.Parse(hour);
@@ -51,12 +51,12 @@ namespace Frontend
         public int GetDay()
         {
             Console.WriteLine("Enter the day : ");
-            var day = Console.ReadKey().ToString();
+            string day = Console.ReadLine();
             while (!Validation.CheckDay(day))
             {
                 Console.WriteLine("Day is not in correct format");
                 Console.WriteLine("Enter the month: ");
-                day = Console.ReadKey().ToString();
+                day = Console.ReadLine();
             }
             return Int32.Parse(day);
 
@@ -65,12 +65,12 @@ namespace Frontend
         public int GetMonth()
         {
             Console.WriteLine("Enter the month: ");
-            string month = Console.ReadKey().ToString();
+            string month = Console.ReadLine();
             while (!Validation.CheckMonth(month))
             {
                 Console.WriteLine("Month is not in correct format");
                 Console.WriteLine("Enter the month: ");
-                month = Console.ReadKey().ToString();
+                month = Console.ReadLine();
             }
             return Int32.Parse(month);
 
@@ -79,12 +79,12 @@ namespace Frontend
         public int GetYear()
         {
             Console.WriteLine("Enter the year: ");
-            string year = Console.ReadKey().ToString();
+            string year = Console.ReadLine();
             while (!Validation.CheckYear(year))
             {
-                Console.WriteLine("Year is not in correct format");
+                Console.WriteLine("Year is not in correct format\n");
                 Console.WriteLine("Enter the year: ");
-                year = Console.ReadKey().ToString();
+                year = Console.ReadLine();
             }
 
             return Int32.Parse(year);

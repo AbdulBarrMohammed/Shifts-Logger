@@ -53,6 +53,19 @@ class Program
                     int deleteId = userInteface.GetId();
                     await DeleteShift(deleteId);
                     break;
+                case MenuAction.Edit_Shift:
+                    int editId = userInteface.GetId();
+                    var idExists = await CheckIdExist(editId);
+                    if (idExists)
+                    {
+                        Shift newEditShift = userInteface.UpdateShift(editId);
+                        await UpdateShift(editId, newEditShift);
+                    }
+                    else {
+                        Console.WriteLine("Id does not exists");
+                    }
+
+                    break;
             }
 
             if (isOn)
@@ -64,13 +77,6 @@ class Program
                 break;
             }
         }
-
-        /*
-        //await DeleteShift(4);
-        //await UpdateShift(2);
-
-        //var add = await AddUser();
-        */
     }
 
 
@@ -94,11 +100,6 @@ class Program
                 Console.WriteLine($"No user with id: {id}");
             }
         }
-
-
-
-
-
     }
 
     static async Task GetAllShifts()
@@ -128,6 +129,36 @@ class Program
         }
     }
 
+    static async Task<bool> CheckIdExist(int id)
+    {
+        HttpClient client = new HttpClient();
+        client.BaseAddress = new Uri("http://localhost:5247/api/");
+
+        try
+        {
+            var shifts = await client.GetFromJsonAsync<List<Shift>>("Shift");
+
+            if (shifts != null)
+            {
+                foreach (var shift in shifts)
+                {
+                    if (shift.Id == id) return true;
+
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return false;
+        }
+        return false;
+    }
+
     static async Task AddShift(Shift newShift)
     {
 
@@ -144,7 +175,6 @@ class Program
             }
         }
 
-
     }
 
     static async Task UpdateShift(int id, Shift newShift)
@@ -152,15 +182,6 @@ class Program
         using (var client = new HttpClient())
         {
             var endpoint = new Uri($"http://localhost:5247/api/Shift/{id}");
-            /*var newShift = new Shift()
-            {
-                Id = id,
-                Duration = 400,
-                StartTime = DateTime.Now,
-                EndTime = DateTime.Now,
-                Name = "Snoop Dog is Doggg"
-            }; */
-
             var newPostJson = await client.PutAsJsonAsync(endpoint, newShift);
             if (newPostJson.IsSuccessStatusCode)
             {
@@ -177,8 +198,6 @@ class Program
         using (var client = new HttpClient())
         {
             var endpoint = new Uri($"http://localhost:5247/api/Shift/{id}");
-
-
             var newPostJson = await client.DeleteAsync(endpoint);
             if (newPostJson.IsSuccessStatusCode)
             {

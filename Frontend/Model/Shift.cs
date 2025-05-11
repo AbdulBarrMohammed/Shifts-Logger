@@ -23,5 +23,15 @@ namespace Frontend.obj.Model
             EndTime = endTime;
             Name = name;
         }
+
+        public Shift(int id, int duration, DateTime startTime, DateTime endTime, string name)
+        {
+            Id = id;
+            Duration = duration;
+            StartTime = startTime;
+            EndTime = endTime;
+            Name = name;
+
+        }
     }
 }

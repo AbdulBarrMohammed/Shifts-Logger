@@ -136,5 +136,35 @@ namespace Frontend
             return new Shift(duration, startDate, endDate, name);
 
         }
+
+        public Shift UpdateShift(int id)
+        {
+            Console.WriteLine($"Edit Shift with id: {id}\n");
+
+            Console.WriteLine("Start Time:");
+            var startYear = GetYear();
+            var startDay = GetDay();
+            var startMonth = GetMonth();
+            var startHour = GetHour();
+            var startMin = GetMin();
+            //new DateTime(year, month, day, hour, minute, second)
+            DateTime startDate = new DateTime(startYear, startMonth, startDay, startHour, startMin, 0);
+
+
+            Console.WriteLine("End Time");
+            var endYear = GetYear();
+            var endDay = GetDay();
+            var endMonth = GetMonth();
+            var endHour = GetHour();
+            var endMin = GetMin();
+            //new DateTime(year, month, day, hour, minute, second)
+            DateTime endDate = new DateTime(endYear, endMonth, endDay, endHour, endMin, 0);
+
+            int duration = CalculateDuration(startDate, endDate);
+
+            string name = GetName();
+            return new Shift(id, duration, startDate, endDate, name);
+
+        }
     }
 }

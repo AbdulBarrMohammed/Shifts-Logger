@@ -120,8 +120,6 @@ class Program
     static async Task AddShift()
     {
 
-
-
         using (var client = new HttpClient())
         {
             var endpoint = new Uri("http://localhost:5247/api/Shift");

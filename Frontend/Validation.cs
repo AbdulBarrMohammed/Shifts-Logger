@@ -66,5 +66,15 @@ namespace Frontend
             if (number > 12 || number < 0) return false;
             return true;
         }
+
+        static public bool CheckId(string id)
+        {
+            int number;
+            if(!Int32.TryParse(id, out number))
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

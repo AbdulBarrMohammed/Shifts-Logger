@@ -95,6 +95,19 @@ namespace Frontend
             return (int)span.TotalHours;
         }
 
+        public int GetId()
+        {
+            Console.WriteLine("Enter Shift id: ");
+
+            var id = Console.ReadLine();
+            while (!Validation.CheckId(id))
+            {
+                Console.WriteLine("Id is not a number\n");
+                Console.WriteLine("Enter Shift id: \n");
+                id = Console.ReadLine();
+            }
+            return Int32.Parse(id);
+
         public Shift CreateNewShift()
         {
             Console.WriteLine("Start Time:");
